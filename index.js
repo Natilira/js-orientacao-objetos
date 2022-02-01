@@ -1,29 +1,5 @@
-class Cliente {
-    nome;
-    cpf; 
-}
-
-class ContaCorrente {
-    agencia;
-    _saldo = 0;   //existe uma proposta  que diz que colocar o # deixa o atributo privado 
-             //https://github.com/tc39/proposal-class-fields#private-fields
-            //  mas será mais comum vc ver _atributo  ( que diz que o atributo é privado)    
-
-    //função ou metodo  ação(parametro){}
-    sacar(valor) {
-        if (this._saldo > valor){
-            this._saldo -=valor;
-            return valor;
-        }   
-    }
-
-    depositar(valor) {
-        if(valor <= 0){ 
-            return; // early return
-        }                // com apenas um comando não é necessário as {} do if
-        this._saldo += valor;
-    }
-}
+import { Cliente } from "./Cliente.js";
+import {ContaCorrente} from "./ContaCorrente.js";
 
 const cliente1 = new Cliente();
 cliente1.nome = 'Natália';
@@ -34,19 +10,20 @@ cliente2.nome = 'João';
 cliente2.cpf = 11322233309;
 
 const cliente3 = new Cliente();
-cliente3.nome = 'Pedro';
+cliente3.nome = 'Ricardo';
 cliente3.cpf = 11422233309;
 
 const contaCorrenteRicardo = new ContaCorrente ();
 contaCorrenteRicardo.agencia = 1001;
+contaCorrenteRicardo.cliente = cliente3;
+contaCorrenteRicardo.depositar (500);
 
-contaCorrenteRicardo.depositar (100);
-contaCorrenteRicardo.depositar (100);
-contaCorrenteRicardo.depositar (100);
-const valorSacado = contaCorrenteRicardo.sacar(50);
-console.log(valorSacado);
+const conta2 = new ContaCorrente();
+conta2.cliente = cliente2;
+conta2.agencia = 102;
+console.log(conta2);
 
+
+contaCorrenteRicardo.transferir(200, conta2);
+console.log(conta2);
 console.log(contaCorrenteRicardo);
-
-//console.log(cliente1);
-//console.log(cliente2);
