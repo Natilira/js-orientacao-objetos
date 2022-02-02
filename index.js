@@ -6,7 +6,7 @@ cliente1.nome = 'Natália';
 cliente1.cpf = 11122233309;
 
 const cliente2 = new Cliente();
-cliente2.nome = 'João';
+cliente2.nome = 'Alice';
 cliente2.cpf = 11322233309;
 
 const cliente3 = new Cliente();
@@ -19,11 +19,11 @@ contaCorrenteRicardo.cliente = cliente3;
 contaCorrenteRicardo.depositar (500);
 
 const conta2 = new ContaCorrente();
-conta2.cliente = cliente2;
+conta2.cliente = cliente1;
 conta2.agencia = 102;
-console.log(conta2);
+//console.log(conta2);
 
 
 contaCorrenteRicardo.transferir(200, conta2);
-console.log(conta2);
-console.log(contaCorrenteRicardo);
+console.log(conta2.saldo);
+//console.log(contaCorrenteRicardo);

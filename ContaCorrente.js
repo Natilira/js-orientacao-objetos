@@ -1,8 +1,25 @@
+import { Cliente } from "./Cliente.js";
+
 export class ContaCorrente {
     agencia;
-    cliente;
+    _cliente;
 
-    _saldo = 0;   
+    set cliente(novoValor){
+        if(novoValor instanceof Cliente){
+            this._cliente = novoValor;
+        }
+    }
+
+    get cliente(){
+        return this._cliente;
+    }
+
+    _saldo = 0;  
+    
+    // sempre que usar o acessor (saldo) ultilizar sem o underline
+    get saldo(){
+        return this._saldo;
+    }
                 
     sacar(valor) {
         if (this._saldo > valor){
