@@ -1,8 +1,10 @@
 import { Cliente } from "./Cliente.js";
 
 export class ContaCorrente {
+    static numeroDeContas = 0; // static esse valor , irá para todas as contas
     agencia;
     _cliente;
+    _saldo = 0;  
 
     set cliente(novoValor){
         if(novoValor instanceof Cliente){
@@ -13,12 +15,16 @@ export class ContaCorrente {
     get cliente(){
         return this._cliente;
     }
-
-    _saldo = 0;  
     
     // sempre que usar o acessor (saldo) ultilizar sem o underline
     get saldo(){
         return this._saldo;
+    }
+
+    constructor(cliente, agencia){
+        this.agencia = agencia;
+        this.cliente = cliente;
+        ContaCorrente.numeroDeContas +=1; // forma de acessar um componente estatico da nossa classe
     }
                 
     sacar(valor) {

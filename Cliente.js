@@ -2,5 +2,16 @@
 
 export class Cliente {
     nome;
-    cpf; 
+    _cpf; 
+
+    get cpf(){
+        return this._cpf;
+    }
+
+    // tipo constructor , acessado durante a criação do obj
+
+    constructor (nome, cpf){
+        this.nome = nome;
+        this._cpf = cpf;
+    }
 }
