@@ -1,10 +1,7 @@
 import { Cliente } from "./Cliente.js";
 
 export class ContaCorrente {
-    static numeroDeContas = 0; // static esse valor , irá para todas as contas
-    agencia;
-    _cliente;
-    _saldo = 0;  
+    static numeroDeContas = 0; // static esse valor , irá para todas as contas 
 
     set cliente(novoValor){
         if(novoValor instanceof Cliente){
@@ -24,6 +21,7 @@ export class ContaCorrente {
     constructor(cliente, agencia){
         this.agencia = agencia;
         this.cliente = cliente;
+        this._saldo = 0;
         ContaCorrente.numeroDeContas +=1; // forma de acessar um componente estatico da nossa classe
     }
                 
