@@ -1,48 +1,18 @@
-import { Cliente } from "./Cliente.js";
+import { Conta } from "./Conta.js";
 
-export class ContaCorrente {
-    static numeroDeContas = 0; // static esse valor , irá para todas as contas 
+// extends --> por baixo dos panos o js vai pegar tudo da classe conta e usar aqui como se estivesse escrito aqui
+// desta maneira todo o comportamento será o mesmo já que estou herdando da classe Conta
 
-    set cliente(novoValor){
-        if(novoValor instanceof Cliente){
-            this._cliente = novoValor;
-        }
-    }
-
-    get cliente(){
-        return this._cliente;
-    }
-    
-    // sempre que usar o acessor (saldo) ultilizar sem o underline
-    get saldo(){
-        return this._saldo;
-    }
-
+export class ContaCorrente extends Conta{
+    static numeroDeContas = 0; 
     constructor(cliente, agencia){
-        this.agencia = agencia;
-        this.cliente = cliente;
-        this._saldo = 0;
-        ContaCorrente.numeroDeContas +=1; // forma de acessar um componente estatico da nossa classe
-    }
-                
+        super(0,cliente, agencia); // O super está sempre refenciando a classe mãe
+        ContaCorrente.numeroDeContas += 1; 
+    }     
+    
+    // sobreescrevendo o comportamento de saca
     sacar(valor) {
-        if (this._saldo > valor){
-            this._saldo -=valor;
-            return valor;
-        }   
-    }
-
-    depositar(valor) {
-        if(valor <= 0){ 
-            return; 
-        }                
-        this._saldo += valor;
-    }
-
-    transferir(valor, conta) {
-        const valorSacado = this.sacar(valor);
-        conta.depositar(valorSacado);
-       
-
+        let taxa = 1.1;
+        return this._sacar(valor, taxa);
     }
 }
