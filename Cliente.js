@@ -9,8 +9,12 @@ export class Cliente {
 
     // tipo constructor , acessado durante a criação do obj
 
-    constructor (nome, cpf){
+    constructor (nome, cpf, senha){
         this.nome = nome;
         this._cpf = cpf;
+        this._senha = senha;
+    }
+    autenticar(){
+        return false;
     }
 }
